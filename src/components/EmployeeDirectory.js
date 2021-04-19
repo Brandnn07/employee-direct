@@ -23,6 +23,20 @@ class EmployeeDirectory extends Component {
     sortEmail = event => {
 
     }
+
+    handleInputChange = event => {
+        // Getting the value and name of the input which triggered the change
+        const { name, value } = event.target;
+    
+        // Updating the input's state
+        this.setState({
+          [name]: value
+        });
+      };
+
+    handleSearchChange = event => {
+        
+    }
 }
 
 function renderTable(props) {
