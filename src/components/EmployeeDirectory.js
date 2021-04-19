@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import API from "../utils/API";
+import SearchForm from "./SearchForm";
 
 class EmployeeDirectory extends Component {
     state = {
-        search = "",
-        searchResults = []
+        search: "",
+        searchResults: []
     };
 
     componentDidMount() {
@@ -27,22 +28,27 @@ class EmployeeDirectory extends Component {
 
     handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
-        const { name, value } = event.target;
+        const value = event.target;
     
         // Updating the input's state
         this.setState({
-          [name]: value
+          [search]: value
         });
+        this.handleSearchChange(value);
       };
 
     handleSearchChange = event => {
-
+        console.log(value);
     };
 
     render () {
         return(
             <div>
                 <SearchForm 
+                handleInputChange={this.handleInputChange}
+                handleSearchChange={this.handleSearchChange}
+                />
+                <RenderTable 
                 
                 />
             </div>
@@ -50,7 +56,7 @@ class EmployeeDirectory extends Component {
     }
 }
 
-function renderTable(props) {
+function RenderTable(props) {
     return (
         <table className="table table-hover table-striped">
             <thead>
@@ -74,4 +80,5 @@ function renderTable(props) {
         </table>
     )
 }
-export default renderTable;
+
+export default EmployeeDirectory;
