@@ -28,7 +28,8 @@ class EmployeeDirectory extends Component {
 
     handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
-        const value = event.target;
+        const value = event.target.value;
+        const search = event.target.search;
     
         // Updating the input's state
         this.setState({
@@ -37,7 +38,7 @@ class EmployeeDirectory extends Component {
         this.handleSearchChange(value);
       };
 
-    handleSearchChange = event => {
+    handleSearchChange = value => {
         console.log(value);
     };
 
@@ -68,12 +69,12 @@ function RenderTable(props) {
                 </tr>
             </thead>
             <tbody>
-                {props.map(data => (
+                {props.results.map(data => (
                     <tr key={data.id.value}>
                         <td><img src={data.picture.thumbnail} alt="employee" /></td>
-                        <td>{props.name.first} {props.name.last}</td>
-                        <td>{props.phone}</td>
-                        <td>{props.email}</td>
+                        <td>{data.name.first} {data.name.last}</td>
+                        <td>{data.phone}</td>
+                        <td>{data.email}</td>
                     </tr>
                 ))}
             </tbody>
