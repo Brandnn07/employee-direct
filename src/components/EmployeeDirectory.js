@@ -5,24 +5,25 @@ class EmployeeDirectory extends Component {
     state = {
         search = "",
         searchResults = []
-    }
+    };
 
     componentDidMount() {
         this.getEmployees()
-    }
+    };
     
     getEmployees = () => {
         API()
-        .then(res => this)
-    }
+        .then(res => this.setState({ results: res.data.data }))
+        .catch(err => console.log(err));
+    };
 
     sortName = event => {
 
-    }
+    };
 
     sortEmail = event => {
 
-    }
+    };
 
     handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
@@ -35,7 +36,17 @@ class EmployeeDirectory extends Component {
       };
 
     handleSearchChange = event => {
-        
+
+    };
+
+    render () {
+        return(
+            <div>
+                <SearchForm 
+                
+                />
+            </div>
+        )
     }
 }
 
