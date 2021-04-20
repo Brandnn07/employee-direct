@@ -17,7 +17,7 @@ class EmployeeDirectory extends Component {
     };
     
     getEmployees = () => {
-        axios.get("https://randomuser.me/api/?results=25&nat=us")
+        axios.get("https://randomuser.me/api/?results=30&nat=us")
         .then(res => this.setState({ results: res.data.results }) )
         .catch(err => console.log(err, "here"));
     };
@@ -32,32 +32,46 @@ class EmployeeDirectory extends Component {
 
     handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
-        const value = event.target.value;
-        const search = event.target.search;
+        event.preventDefault();
+
+        const sorted = this.state.results.filter(employee => {
+
+          const sortedEmps = [employee.name.first, employee.name.last]
+          return sortedEmps.some(employee => employee.includes(event.target.value))
+        
+        })
     
-        // Updating the input's state
         this.setState({
-          [search]: value
-        });
-        this.handleSearchChange(value);
+          employeesSorted: sorted,
+          search: event.target.value
+        })
       };
 
-    handleSearchChange = value => {
-        console.log(value)
-    };
+    
 
     render () {
         return(
             <div>
                 <SearchForm 
                 handleInputChange={this.handleInputChange}
-                handleSearchChange={this.handleSearchChange}
                 />
-                <RenderTable 
+                {this.state.employeesSorted.length ? (
+            <RenderTable 
+                handleInputChange={this.handleInputChange}
+                onClick={this.sortName}
+                results={this.state.employeesSorted}
+                />
+                ) : (
+                    <RenderTable 
+                handleInputChange={this.handleInputChange}
                 onClick={this.sortName}
                 results={this.state.results}
-
                 />
+                )
+            }
+                
+
+                
             </div>
         )
     }
