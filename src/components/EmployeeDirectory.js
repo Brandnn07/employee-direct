@@ -33,18 +33,21 @@ class EmployeeDirectory extends Component {
     handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
         event.preventDefault();
-
-        const sorted = this.state.results.filter(employee => {
-
-          const sortedEmps = [employee.name.first, employee.name.last]
-          return sortedEmps.some(employee => employee.includes(event.target.value))
         
-        })
-    
         this.setState({
-          employeesSorted: sorted,
           search: event.target.value
         })
+        const input = event.target.value
+        const sorted = this.state.results.filter(employee => {
+          const sortedEmps = [employee.name.first, employee.name.last]
+          return sortedEmps.some(employee => employee.includes(input))
+        
+        })
+
+        this.setState({
+            employeesSorted: sorted
+        })
+    
       };
 
     
