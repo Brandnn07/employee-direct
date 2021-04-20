@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import API from "../utils/API";
+// import API from "../utils/API";
 import SearchForm from "./SearchForm";
 import RenderTable from "./RenderTable";
 import axios from "axios";
@@ -8,7 +8,8 @@ class EmployeeDirectory extends Component {
     state = {
         search: "",
         results: [],
-        searchResults: []
+        employeesSorted: [],
+        filter: "up"
     };
 
     componentDidMount() {
@@ -21,12 +22,12 @@ class EmployeeDirectory extends Component {
         .catch(err => console.log(err, "here"));
     };
 
-    sortName = event => {
-
+    sortName = (event) => {
+        
     };
 
-    sortEmail = event => {
-
+    sortEmail = (event) => {
+        console.log("yeppers")
     };
 
     handleInputChange = event => {
@@ -42,7 +43,7 @@ class EmployeeDirectory extends Component {
       };
 
     handleSearchChange = value => {
-        console.log(value);
+        console.log(value)
     };
 
     render () {
@@ -52,7 +53,9 @@ class EmployeeDirectory extends Component {
                 handleInputChange={this.handleInputChange}
                 handleSearchChange={this.handleSearchChange}
                 />
-                <RenderTable results={this.state.results}
+                <RenderTable 
+                onClick={this.sortName}
+                results={this.state.results}
 
                 />
             </div>
