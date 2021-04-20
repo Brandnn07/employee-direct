@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import SearchForm from "./SearchForm";
 import RenderTable from "./RenderTable";
+import axios from "axios";
 
 class EmployeeDirectory extends Component {
     state = {
@@ -15,9 +16,9 @@ class EmployeeDirectory extends Component {
     };
     
     getEmployees = () => {
-        API()
-        .then(res => this.setState({ results: res.data.data }))
-        .catch(err => console.log(err));
+        axios.get("https://randomuser.me/api/?results=25&nat=us")
+        .then(res => this.setState({ results: res.data.results }) )
+        .catch(err => console.log(err, "here"));
     };
 
     sortName = event => {

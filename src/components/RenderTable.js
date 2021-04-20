@@ -12,12 +12,12 @@ function RenderTable(props) {
                 </tr>
             </thead>
             <tbody>
-                {props.results.map(data => (
-                    <tr key={data.id.value}>
-                        <td><img src={data.picture.thumbnail} alt="employee" /></td>
-                        <td>{data.name.first} {data.name.last}</td>
-                        <td>{data.phone}</td>
-                        <td>{data.email}</td>
+                {props.results.map(results => (
+                    <tr key={results.id.value}>
+                        <td><img src={results.picture.thumbnail} alt="employee" /></td>
+                        <td>{results.name.first} {results.name.last}</td>
+                        <td>{results.phone}</td>
+                        <td>{results.email}</td>
                     </tr>
                 ))}
             </tbody>
