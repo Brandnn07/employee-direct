@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-// import API from "../utils/API";
+import API from "../utils/API";
 import SearchForm from "./SearchForm";
 import RenderTable from "./RenderTable";
-import axios from 'axios';
 
 class EmployeeDirectory extends Component {
     state = {
         search: "",
+        results: [],
         searchResults: []
     };
 
@@ -15,7 +15,7 @@ class EmployeeDirectory extends Component {
     };
     
     getEmployees = () => {
-        axios.get("https://randomuser.me/api/?results=30")
+        API()
         .then(res => this.setState({ results: res.data.data }))
         .catch(err => console.log(err));
     };
@@ -52,6 +52,7 @@ class EmployeeDirectory extends Component {
                 handleSearchChange={this.handleSearchChange}
                 />
                 <RenderTable results={this.state.results}
+
                 />
             </div>
         )
